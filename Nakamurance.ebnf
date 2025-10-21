@@ -1,0 +1,100 @@
+(* ====================================================== *)
+(* Nakamurance Language – EBNF Grammar Specification      *)
+(* Project G-FUN-500 — Glados VM                          *)
+(* ====================================================== *)
+
+program         = { instruction } ;
+
+instruction     = variable_decl
+                | function_decl
+                | assignment
+                | if_statement
+                | while_loop
+                | return_statement
+                | print_statement
+                | expression_statement
+                ;
+
+(* --- Variable declarations --- *)
+variable_decl   = type identifier "=" expression ";" ;
+
+type            = "copine"        (* int *)
+                | "cale-cale"     (* char *)
+                | "bandit"        (* bool *)
+                | "fiesta"        (* float *)
+                | "doggy"         (* double *)
+                ;
+
+(* --- Function definitions --- *)
+function_decl   = "pookie" identifier "(" [ parameters ] ")" block ;
+
+parameters      = identifier { "," identifier } ;
+
+block           = "{" { instruction } "}" ;
+
+(* --- Assignments --- *)
+assignment      = identifier "=" expression ";" ;
+
+(* --- Conditionals --- *)
+if_statement    = "djadja" "(" expression ")" block [ "comporté" block ] ;
+
+(* --- Loops --- *)
+while_loop      = "sapé" "(" expression ")" block ;
+
+(* --- Return --- *)
+return_statement = "aya" expression ";" ;
+
+(* --- Print --- *)
+print_statement = "coco" expression ";" ;
+
+(* --- Expressions --- *)
+expression      = logical_or ;
+
+logical_or      = logical_and { "||" logical_and } ;
+logical_and     = equality { "&&" equality } ;
+equality        = comparison { ("==" | "!=") comparison } ;
+comparison      = term { ("<" | ">" | "<=" | ">=") term } ;
+term            = factor { ("+" | "-") factor } ;
+factor          = unary { ("*" | "/") unary } ;
+unary           = [ "-" | "!" ] primary ;
+
+primary         = number
+                | string
+                | boolean
+                | identifier
+                | "(" expression ")"
+                | function_call
+                ;
+
+function_call   = "fly" identifier "(" [ arguments ] ")" ;
+
+arguments       = expression { "," expression } ;
+
+(* --- Literals --- *)
+number          = digit { digit } [ "." digit { digit } ] ;
+string          = '"' { character } '"' ;
+boolean         = "true" | "false" ;
+identifier      = letter { letter | digit | "_" } ;
+
+(* --- Lexical elements --- *)
+digit           = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+letter          = "A" | "B" | ... | "Z"
+                | "a" | "b" | ... | "z" ;
+
+character       = ? any printable character except " ? ;
+
+(* EBNF grammar for the Glados Virtual Machine language *)
+
+program        = { instruction } ;
+
+instruction    = push | pushArg | callOp | callFunc | label | jump | jumpIfFalse                 | storeVar | loadVar | ret | print ;
+
+push           = "Push" , "(" , value , ")" ;pushArg        = "PushArg" , integer ;callOp         = "Call" , op ;callFunc       = "CallFunc" , string ;label          = "Label" , string ;jump           = "Jump" , integer ;jumpIfFalse    = "JumpIfFalse" , integer ;storeVar       = "StoreVar" , string ;loadVar        = "LoadVar" , string ;ret            = "Ret" ;print          = "Print" ;
+
+value          = vInt | vBool ;vInt           = "VInt" , integer ;vBool          = "VBool" , ("True" | "False") ;
+
+op             = "Add" | "Sub" | "Mul" | "Div" | "Eq" | "Less" ;
+
+integer        = digit , { digit } ;string         = "\"" , { ( letter | digit ) } , "\"" ;
+
+letter         = "a" | "b" | "c" | ... | "z" | "A" | "B" | ... | "Z" ;digit          = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
