@@ -177,31 +177,11 @@ sapé (age < 22) {
 
 ---
 
-## 🧬 Grammar (EBNF)
+## 🧮 Grammar (EBNF)
 
-```
-programme ::= { instruction }
+You can view the full Nakamurance grammar specification here:
 
-instruction ::= decl_var
-              | decl_fonction
-              | si
-              | tantque
-              | retour
-              | instr_expr
-
-decl_var ::= "copine" ident "=" expression ";"
-
-decl_fonction ::= "pookie" ident "(" [ params ] ")" bloc
-
-params ::= ident { ident }  
-  ; parameters separated by spaces (no commas)
-
-si ::= "djadja" "(" expression ")" bloc [ "comporté" bloc ]
-
-tantque ::= "sapé" "(" expression ")" bloc
-
-retour ::= "aya" expression ";"
-```
+👉 [View the Nakamurance Grammar (.ebnf)](nakamurance.ebnf)
 
 ---
 
