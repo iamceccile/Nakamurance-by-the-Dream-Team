@@ -137,20 +137,6 @@ These are then interpreted by the **Executor** module in the VM.
 
 ---
 
-## ⚙️ Internal Architecture
-
-**Parser / Compiler (Person B)**  
-Transforms Nakamurance source into bytecode instructions.
-
-**VM (Person A)**  
-Executes bytecode by manipulating a stack and environment.
-
-**Stack & Environment**
-- The stack stores temporary computation values.
-- The environment maps variables and functions to their values.
-
----
-
 ## 🧩 Example Program
 
 ```nakamurance
