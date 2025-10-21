@@ -181,7 +181,7 @@ sapé (age < 22) {
 
 You can view the full Nakamurance grammar specification here:
 
-👉 [View the Nakamurance Grammar (.ebnf)](nakamurance.ebnf)
+https://github.com/EpitechPGE3-2025/G-FUN-500-TLS-5-1-glados-7/blob/main/Nakamurance.ebnf
 
 ---
 
